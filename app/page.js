@@ -1,20 +1,13 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import ToDoList from "./components/ToDoList"; 
 
 export default function Home() {
   const [time, setTime] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
   const [laps, setLaps] = useState([]);
   const timerRef = useRef(null);
-  const [list, setList] = useState([]);
-  const [input, setInput] = useState('');
-
-  const addElement = () => {
-    if (input === '') return alert("You must write somthing on title!");
-    setList([...list, {text: input, checked: false}]);
-    setInput('');
-  };
 
   const formatTime = (ms) => {
     const minutes = Math.floor(ms / 60000);
@@ -61,7 +54,6 @@ export default function Home() {
   return (
     <div className="w-full min-h-screen flex flex-col items-center justify-center gap-6 p-8 bg-slate-950 text-white">
       <h1 className="text-2xl font-bold">Stopwatch</h1>
-
       <div className="text-6xl font-mono tabular-nums bg-slate-900 px-8 py-4 rounded-xl shadow-md border border-slate-800">
         {formatTime(time)}
       </div>
@@ -103,6 +95,7 @@ export default function Home() {
           </ul>
         </div>
       )}
+      <ToDoList />
     </div>
   );
 }
